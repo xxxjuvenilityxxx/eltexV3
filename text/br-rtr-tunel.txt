@@ -1,0 +1,8 @@
+en
+conf t
+int tunnel.1
+  ip address 10.10.10.10/30
+  ip tunnel 172.16.5.14 172.16.4.14 mode gre
+  ex
+ex
+wr

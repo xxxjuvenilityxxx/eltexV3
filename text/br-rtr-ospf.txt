@@ -1,0 +1,16 @@
+en
+conf t
+router ospf 1
+  network 10.10.10.8/30 area 0
+  network 192.168.2.0/27 area 0
+  area 0 authentication message-digest
+  passive-interface isp
+  passive-interface lan
+  ex
+int tunnel.1
+  ip ospf authentication-key P@ssw0rd
+  ip ospf authentication message-digest
+  ex
+ex
+wr
+do sh ip route

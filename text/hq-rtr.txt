@@ -1,0 +1,57 @@
+en
+conf t
+hostname hq-rtr.au-team.irpo
+do sh port br
+int isp
+  ip address 172.16.4.14/28
+  ex
+int 100
+  ip address 192.168.1.1/26
+  ex
+int 200
+  ip address 192.168.1.65/28
+  ex
+int 999
+  ip address 192.168.1.81/29
+  ex
+port te0
+  service-instance isp
+    encapsulation untagged
+    connect ip interface isp
+    ex
+  ex
+port te1
+  service-instance 100
+    encapsulation dot1q 100
+    rewrite pop 1
+    connect ip interface 100
+    ex
+  service-instance 200
+    encapsulation dot1q 200
+    rewrite pop 1
+    connect ip interface 200
+    ex
+  service-instance 999
+    encapsulation dot1q 999
+    rewrite pop 1
+    connect ip interface 999
+    ex
+  ex
+ip route 0.0.0.0/0 172.16.4.1
+ip name-server 77.88.8.8
+ip nat pool INTERNET 192.168.1.1-192.168.1.87
+ip nat source dynamic inside-to-outside pool INTERNET overload 172.16.4.14
+int isp
+  ip nat outside
+  ex
+int 100
+  ip nat inside
+  ex
+int 200
+  ip nat inside
+  ex
+int 999
+  ip nat inside
+  ex
+ex
+wr

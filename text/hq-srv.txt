@@ -1,0 +1,72 @@
+hostnamectl hostname hq-srv.au-team.irpo
+exec bash
+cd /etc/net/ifaces/ens18
+echo 192.168.1.2/26 > ipv4address
+echo default via 192.168.1.1 > ipv4route
+echo nameserver 77.88.8.8 > resolv.conf
+systemctl restart network
+apt-get update
+apt-get install bind bind-utils -y
+cd /etc/bind
+mcedit named.conf
+<<!--Коментируем строку
+#include "/etc/bind/rndc.conf";
+перед строкой должен стоять знак #--!>>
+F2 - Save F10 - exit
+mcedit options.conf
+<<!--Приводим к следующему виду--!>>
+listen-on { 192.168.1.2; };
+//listen-on-v6 { ::1; };
+forwaders { 77.88.8.8; };
+allow-query { any; };
+allow-query-cache { any; };
+allow-recursion { any; };
+F2 - Save F10 - exit
+mcedit local.conf
+zone "au-team.irpo" {
+  type master;
+  file "/etc/bind/zone/db.au";
+};
+zone "1.168.192.in-addr.arpa" {
+  type master;
+  file "/etc/bind/zone/db.revers";
+};
+F2 - Save F10 - exit
+cd zone
+cp localhost db.au
+mcedit db.au
+<<!--Выполнить замену localhost на au-team.irpo
+и 127.0.0.1 на 192.168.1.2--!>>
+F2 - Save F10 - exit
+cp db.au db.revers
+chownd root:named db.*
+mcedit db.au
+<<!--Дописываем ниже--!>>
+hq-srv  IN  A  192.168.1.2
+hq-rtr  IN  A  192.168.1.1
+br-srv  IN  A  192.168.2.2
+bt-rtr  IN  A  192.168.2.1
+hq-cli  IN  A  192.168.1.66
+moodle  IN  CNAME  hq-rtr
+wiki  IN  CNAME  hq-rtr
+F2 - Save F10 - exit
+mcedit db.revers
+<<!--Дописываем ниже--!>>
+1  IN  PTR  hq-rtr.au-team.irpo.
+2  IN  PTR  hq-srv.au-team.irpo.
+66  IN  PTR hq-cli.au-team.irpo.
+F2 - Save F10 - exit
+named-checkzone au-team.irpo db.au
+named-checkzone 1.168.192.in-addr.arpa db.revers
+systemctl restart bind
+cd /etc/net/iface/ens19
+mcedit resolv.conf
+nameserver 192.168.1.2
+search au-team.irpo
+F2 - Save F10 - exit
+systemctl restart network
+systemctl restart bind
+host hq-srv
+host 192.168.1.2
+host wiki
+host ya.ru

@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eltex Equipment Exam Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0056b3;
+            --secondary: #2c3e50;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1533750349088-cd871a92f312?ixlib=rb-4.0.3') no-repeat center center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Equipment Grid */
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .equipment-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent);
+        }
+        
+        .card-content {
+            padding: 25px;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .card-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        /* Exam Solutions */
+        .exam-section {
+            background-color: var(--light);
+        }
+        
+        .questions-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .question {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .question h3 {
+            color: var(--secondary);
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--accent);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .solution {
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            display: none;
+        }
+        
+        .solution.show {
+            display: block;
+        }
+        
+        .solution p {
+            margin-bottom: 15px;
+        }
+        
+        .solution-code {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        /* Documentation */
+        .docs-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .docs-sidebar {
+            flex: 0 0 250px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .docs-sidebar h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .docs-menu {
+            list-style: none;
+        }
+        
+        .docs-menu li {
+            margin-bottom: 8px;
+        }
+        
+        .docs-menu a {
+            color: var(--dark);
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+        }
+        
+        .docs-menu a:hover, .docs-menu a.active {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .docs-content {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .docs-content h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .docs-container {
+                flex-direction: column;
+            }
+            
+            .docs-sidebar {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-network-wired fa-2x"></i>
+                <div class="logo-text">Eltex Exam Solutions</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Главная</a></li>
+                    <li><a href="#equipment">Аппаратура</a></li>
+                    <li><a href="#documentation">Документация</a></li>
+                    <li><a href="#exam">Решение экзамена</a></li>
+                    <li><a href="#resources">Ресурсы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Техническая документация Eltex</h1>
+            <p>Полное руководство по оборудованию Eltex с решениями экзаменационных вопросов</p>
+            <a href="#exam" class="btn">Начать подготовку</a>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section id="equipment" class="section">
+        <div class="container">
+            <h2 class="section-title">Оборудование Eltex</h2>
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div class="card-img">
+                        <i class="fas fa-router"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Маршрутизаторы Eltex</h3>
+                        <p>Серия промышленных маршрутизаторов Eltex предназначена для построения отказоустойчивых сетей связи.</p>
+                        <a href="#" class="btn">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="card-img">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Точки доступа Wi-Fi</h3>
+                        <p>Беспроводные точки доступа Eltex поддерживают стандарты Wi-Fi 5 и Wi-Fi 6 для высокоскоростного доступа.</p>
+                        <a href="#" class="btn">Подробнее</a>
+                    </div>
+                </div>
+                
+                <div class="equipment-card">
+                    <div class="card-img">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>IP-телефония</h3>
+                        <p>Оборудование для построения современных телефоных сетей на базе протокола SIP.</p>
+                        <a href="#" class="btn">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation" class="section">
+        <div class="container">
+            <h2 class="section-title">Техническая Документация</h2>
+            <div class="docs-container">
+                <div class="docs-sidebar">
+                    <h3>Категории</h3>
+                    <ul class="docs-menu">
+                        <li><a href="#" class="active">Руководства пользователя</a></li>
+                        <li><a href="#">Технические спецификации</a></li>
+                        <li><a href="#">Руководства по установке</a></li>
+                        <li><a href="#">Руководства по настройке</a></li>
+                        <li><a href="#">API документация</a></li>
+                        <li><a href="#">Часто задаваемые вопросы</a></li>
+                        <li><a href="#">Решения проблем</a></li>
+                    </ul>
+                </div>
+                
+                <div class="docs-content">
+                    <h2>Руководство по настройке маршрутизатора ESR-1000</h2>
+                    <h3>Базовые настройки</h3>
+                    <p>Для первоначальной настройки маршрутизатора Eltex ESR-1000 выполните следующие шаги:</p>
+                    <ol>
+                        <li>Подключите маршрутизатор к сети питания</li>
+                        <li>Подключите компьютер к порту ETH0 с помощью Ethernet-кабеля</li>
+                        <li>Откройте веб-браузер и перейдите по адресу 192.168.1.1</li>
+                        <li>Используйте стандартные учетные данные: admin/admin</li>
+                        <li>Смените пароль администратора в разделе System > User Management</li>
+                    </ol>
+                    
+                    <h3>Настройка WAN-подключения</h3>
+                    <p>Для настройки подключения к интернету:</p>
+                    <div class="solution-code">
+                        // Пример настройки PPPoE подключения
+                        configure terminal
+                        interface GigabitEthernet0/1
+                        no shutdown
+                        pppoe enable
+                        pppoe-client dial-pool-number 1
+                        exit
+                        interface Dialer1
+                        ip address negotiated
+                        encapsulation ppp
+                        dialer pool 1
+                        ppp chap hostname user@example.com
+                        ppp chap password 0 mypassword
+                        exit
+                    </div>
+                    
+                    <h3>Настройка Wi-Fi</h3>
+                    <p>Для настройки беспроводной сети:</p>
+                    <ol>
+                        <li>Перейдите в раздел Wireless > Basic Settings</li>
+                        <li>Включите беспроводное соединение</li>
+                        <li>Установите имя сети (SSID)</li>
+                        <li>Выберите режим безопасности WPA2-Personal</li>
+                        <li>Установите надежный пароль</li>
+                        <li>Сохраните настройки и перезагрузите устройство</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exam Solutions Section -->
+    <section id="exam" class="section exam-section">
+        <div class="container">
+            <h2 class="section-title">Решение частых коорпаративных вопросов</h2>
+            <div class="questions-container">
+                <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 1: Как настроить VLAN на коммутаторе Eltex LTP-8X?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>Решение:</strong></p>
+                        <p>Для настройки VLAN на коммутаторе Eltex выполните следующие команды:</p>
+                        <div class="solution-code">
+                            // Создание VLAN
+                            configure terminal
+                            vlan 10
+                            name Office
+                            exit
+                            
+                            // Назначение портов VLAN
+                            interface range ethernet 0/1-4
+                            switchport mode access
+                            switchport access vlan 10
+                            exit
+                        </div>
+                        <p>Для настройки транкового порта:</p>
+                        <div class="solution-code">
+                            interface ethernet 0/8
+                            switchport mode trunk
+                            switchport trunk allowed vlan 10,20,30
+                            exit
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 2: Как настроить резервирование DHCP на устройствах Eltex?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>Решение:</strong></p>
+                        <p>Для настройки резервирования DHCP выполните следующие шаги:</p>
+                        <ol>
+                            <li>Определите MAC-адрес устройства, для которого требуется резервирование</li>
+                            <li>Откройте веб-интерфейс маршрутизатора</li>
+                            <li>Перейдите в раздел Services > DHCP Server</li>
+                            <li>Нажмите "Add" в разделе "Static Leases"</li>
+                            <li>Введите MAC-адрес устройства и желаемый IP-адрес</li>
+                            <li>Сохраните настройки</li>
+                        </ol>
+                        <p>Пример настройки через CLI:</p>
+                        <div class="solution-code">
+                            configure terminal
+                            ip dhcp pool STATIC-POOL
+                            host 192.168.1.50 255.255.255.0
+                            hardware-address aa:bb:cc:dd:ee:ff
+                            client-name MyPC
+                            exit
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 3: Как настроить QoS для VoIP трафика?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>Решение:</strong></p>
+                        <p>Для приоритизации VoIP трафика на маршрутизаторе Eltex:</p>
+                        <ol>
+                            <li>Создайте класс трафика для VoIP</li>
+                            <li>Настройте политику качества обслуживания</li>
+                            <li>Примените политику к интерфейсу</li>
+                        </ol>
+                        <div class="solution-code">
+                            // Создание ACL для VoIP трафика
+                            ip access-list extended VOIP-ACL
+                            permit udp any any range 16384 32767
+                            exit
+                            
+                            // Создание класса трафика
+                            class-map match-any VOIP-CLASS
+                            match access-group name VOIP-ACL
+                            exit
+                            
+                            // Создание политики QoS
+                            policy-map VOIP-POLICY
+                            class VOIP-CLASS
+                            priority percent 20
+                            class class-default
+                            fair-queue
+                            exit
+                            
+                            // Применение политики к интерфейсу
+                            interface GigabitEthernet0/0
+                            service-policy output VOIP-POLICY
+                            exit
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 4: Как настроить isp для получения трафика?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>Для получения трафика трафика на маршрутизаторе Eltex:</p>
+                        <div class="solution-code">
+                            hostnamectl hostname isp <br>
+                            exec bash <br>
+                            apt-get update <br>
+                            apt-get install mc <br>
+                            cd /etc/net/ifaces  <br>
+                            ls  <br>
+                            cp -r ens18 /etc/net/ifaces/ens19   <br>
+                            cp -r ens18 /etc/net/ifaces/ens20   <br>
+                            cd ens19    <br>
+                            cedit options   <br>
+                            BOOTPROTO=static    <br>
+                            F2 - Save F10 - exit    <br>
+                            echo 172.16.4.1/28 > ipv4address    <br>
+                            cd /etc/net/ifaces/ens20    <br>
+                            mcedit options  <br>
+                            BOOTPROTO=static    <br>
+                            F2 - Save F10 - exit    <br>
+                            echo 172.16.5.1/28 > ipv4address <br>
+                            cd  <br>    
+                            apt-get -y install firewalld    <br>
+                            systemctl enable --now firewalld    <br>
+                            firewall-cmd --permanent --zone=public --add-interface=ens18    <br>
+                            firewall-cmd --permanent --zone=trusted --add-interface=ens19   <br>
+                            firewall-cmd --permanent --zone=trusted --add-interface=ens20   <br>
+                            firewall-cmd --permanent --zone=public --add-masquerade <br>
+                            firewall-cmd --complete-reload  <br>
+                            systemctl restart network   <br>
+                            ping ya.ru  <br>
+                            ping ya.ru -I 172.16.4.1    <br>
+                            ping ya.ru -I 172.16.5.1    <br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 5: Как настроить главный маршрутизатор Eltex с подсетями?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>Для получения трафика на маршрутизаторе Eltex:</p>
+                        <div class="solution-code">
+                        en   <br>
+                        conf t  <br>
+                        hostname hq-rtr.au-team.irpo    <br>
+                        do sh port br   <br>
+                        int isp <br>
+                          ip address 172.16.4.14/28 <br>
+                          ex    <br>
+                        int 100 <br>
+                          ip address 192.168.1.1/26 <br>
+                          ex    <br>
+                        int 200 <br>
+                          ip address 192.168.1.65/28    <br>
+                          ex    <br>
+                        int 999 <br>
+                          ip address 192.168.1.81/29    <br>
+                          ex    <br>
+                        port te0    <br>
+                          service-instance isp  <br>
+                            encapsulation untagged  <br>
+                            connect ip interface isp    <br>
+                            ex  <br>
+                          ex    <br>
+                        port te1    <br>
+                          service-instance 100  <br>
+                            encapsulation dot1q 100 <br>
+                            rewrite pop 1   <br>
+                            connect ip interface 100    <br>
+                            ex  <br>
+                          service-instance 200  <br>
+                            encapsulation dot1q 200 <br>
+                            rewrite pop 1   <br>
+                            connect ip interface 200    <br>
+                            ex  <br>
+                          service-instance 999  <br>
+                            encapsulation dot1q 999 <br>
+                            rewrite pop 1   <br>
+                            connect ip interface 999    <br>
+                            ex  <br>
+                          ex    <br>
+                        ip route 0.0.0.0/0 172.16.4.1   <br>
+                        ip name-server 77.88.8.8    <br>
+                        ip nat pool INTERNET 192.168.1.1-192.168.1.87   <br>
+                        ip nat source dynamic inside-to-outside pool INTERNET overload 172.16.4.14  <br>
+                        int isp <br>
+                          ip nat outside    <br>
+                          ex    <br>
+                        int 100 <br>
+                          ip nat inside <br>
+                          ex    <br>
+                        int 200 <br>
+                          ip nat inside <br>
+                          ex    <br>
+                        int 999 <br>
+                          ip nat inside <br>
+                          ex    <br>
+                        ex  <br>
+                        wr  <br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 6: Как настроить аварийный маршрутизатор Eltex с подсетями?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>Для получения трафика на маршрутизаторе Eltex:</p>
+                        <div class="solution-code">
+                           en   <br>
+conf t  <br>
+hostname br-rtr.au-team.irpo    <br>
+do sh port br   <br>
+int isp <br>
+  ip address 172.16.5.14/28 <br>
+  ex    <br>
+int lan <br>
+  ip address 192.168.2.1/27 <br>
+  ex    <br>
+port te0    <br>
+  service-instance isp  <br>
+    encapsulation untaged   <br>
+    connect ip interface isp    <br>
+    ex  <br>
+  ex    <br>
+port te1    <br>
+    service-instance lan    <br>
+    encapsulation untaged   <br>
+    connect ip interface lan    <br>
+    ex  <br>
+  ex    <br>
+ip route 0.0.0.0/0 172.16.5.1   <br>
+ip name-server 77.88.8.8    <br>
+ip nat pool INTERNET 192.168.2.1-192.168.2.30   <br>
+ip nat source dynamic inside-to-outside pool INTERNET overload 172.16.5.14  <br>
+int isp <br>
+  ip nat outside    <br>
+  ex    <br>
+int lan <br>
+  ip nat inside <br>
+  ex    <br>
+ex  <br>
+wr  <br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 7: базовая настройка туннелирование основного маршутиризатора?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>Для туннелирование основного маршутиризатора Eltex:</p>
+                        <div class="solution-code">
+                           en <br>
+conf t  <br>
+int tunnel.1    <br>    
+  ip address 10.10.10.9/30  <br>
+  ip tunnel 172.16.4.14 172.16.5.14 mode gre    <br>
+  ex    <br>
+ex  <br>
+wr  <br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 8: базовая настройка туннелирование аварийного маршутиризатора?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>Для туннелирование аварийного маршутиризатора Eltex:</p>
+                        <div class="solution-code">
+                            en <br>
+conf t  <br>
+int tunnel.1    <br>
+  ip address 10.10.10.10/30 <br>
+  ip tunnel 172.16.5.14 172.16.4.14 mode gre <br>
+  ex    <br>
+ex  <br>
+wr  <br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 9: настройка ospf аварийного маршутиризатора?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>настройка ospf аварийного маршутиризатора:</p>
+                        <div class="solution-code">
+                           en<br>
+conf t<br>
+router ospf 1<br>
+  network 10.10.10.8/30 area 0<br>
+  network 192.168.2.0/27 area 0<br>
+  area 0 authentication message-digest<br>
+  passive-interface isp<br>
+  passive-interface lan<br>
+  ex<br>
+int tunnel.1<br>
+  ip ospf authentication-key P@ssw0rd<br>
+  ip ospf authentication message-digest<br>
+  ex<br>
+ex<br>
+wr<br>
+do sh ip route<br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 10: настройка ospf основного маршутиризатора?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>настройка ospf основного маршутиризатора:</p>
+                        <div class="solution-code">
+                          en<br>
+conf t<br>
+router ospf 1<br>
+  network 10.10.10.8/30 area 0<br>
+  network 192.168.1.0/26 area 0<br>
+  network 192.168.1.64/28 area 0<br>
+  network 192.168.1.80/29 area 0<br>
+  passive-interface isp<br>
+  passive-interface 100<br>
+  passive-interface 200<br>
+  passive-interface 999<br>
+  area 0 authentication message-digest<br>
+    ex<br>
+int tunnel.1<br>
+  ip ospf authentication-key P@ssw0rd<br>
+  ip ospf authentication message-digest<br>
+  ex<br>
+ex<br>
+wr<br>
+do sh ip route<br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 11: Как настроить основной сервер?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>Для получения трафика трафика на маршрутизаторе Eltex:</p>
+                        <div class="solution-code">
+                          hostnamectl hostname hq-srv.au-team.irpo<br>
+exec bash <br>
+cd /etc/net/ifaces/ens18<br>
+echo 192.168.1.2/26 > ipv4address<br>
+echo default via 192.168.1.1 > ipv4route<br>
+echo nameserver 77.88.8.8 > resolv.conf<br>
+systemctl restart network<br>
+apt-get update<br>
+apt-get install bind bind-utils -y<br>
+cd /etc/bind<br>
+mcedit named.conf<br>
+Коментируем строку <br>
+#include "/etc/bind/rndc.conf";<br>
+перед строкой должен стоять знак #--!>><br>
+F2 - Save F10 - exit<br>
+mcedit options.conf<br>
+Приводим к следующему виду<br> 
+listen-on { 192.168.1.2; };<br>
+//listen-on-v6 { ::1; };<br>
+forwaders { 77.88.8.8; };<br>
+allow-query { any; };<br>
+allow-query-cache { any; };<br>
+allow-recursion { any; };<br>
+F2 - Save F10 - exit<br>
+mcedit local.conf<br>
+zone "au-team.irpo" {<br>
+  type master;<br>
+  file "/etc/bind/zone/db.au";<br>
+};<br>
+zone "1.168.192.in-addr.arpa" {<br>
+  type master;<br>
+  file "/etc/bind/zone/db.revers";<br>
+};<br>
+F2 - Save F10 - exit<br>
+cd zone<br>
+cp localhost db.au<br>
+mcedit db.au<br>
+Выполнить замену localhost на au-team.irpo<br>
+и 127.0.0.1 на 192.168.1.2<br>
+F2 - Save F10 - exit<br>
+cp db.au db.revers<br>
+chownd root:named db.*<br>
+mcedit db.au<br>
+Дописываем ниже<br>
+hq-srv  IN  A  192.168.1.2<br>
+hq-rtr  IN  A  192.168.1.1<br>
+br-srv  IN  A  192.168.2.2<br>
+bt-rtr  IN  A  192.168.2.1<br>
+hq-cli  IN  A  192.168.1.66<br>
+moodle  IN  CNAME  hq-rtr<br>
+wiki  IN  CNAME  hq-rtr<br>
+F2 - Save F10 - exit<br>
+mcedit db.revers<br>
+Дописываем ниже<br>
+1  IN  PTR  hq-rtr.au-team.irpo.<br>
+2  IN  PTR  hq-srv.au-team.irpo.<br>
+66  IN  PTR hq-cli.au-team.irpo.<br>
+F2 - Save F10 - exit<br>
+named-checkzone au-team.irpo db.au<br>
+named-checkzone 1.168.192.in-addr.arpa db.revers<br>
+systemctl restart bind<br>
+cd /etc/net/iface/ens19<br>
+mcedit resolv.conf<br>
+nameserver 192.168.1.2<br>
+search au-team.irpo<br>
+F2 - Save F10 - exit<br>
+systemctl restart network<br>
+systemctl restart bind<br>
+host hq-srv<br>
+host 192.168.1.2<br>
+host wiki <br>
+host ya.ru <br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 12: настройка DNS на маршрутизаторах</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>Для получения трафика трафика на маршрутизаторе Eltex:</p>
+                        <div class="solution-code">
+                          en<br>
+conf t<br>
+ip name-server 192.168.1.2<br>
+ip domain-name au-team.irpo<br>
+ip domain-lookup<br>
+no ip name-server 77.88.8.8<br>
+do wr<br>
+do ping hq-srv<br>
+<br>
+идентичное<br>
+<br>
+en<br>
+conf t<br>
+ip name-server 192.168.1.2<br>
+ip domain-name au-team.irpo<br>
+ip domain-lookup<br>
+no ip name-server 77.88.8.8<br>
+do wr<br>
+do ping hq-srv<br>
+                        </div>
+                    </div>
+                </div>
+
+                   <div class="question">
+                    <div class="question-header">
+                        <h3>Вопрос 13: Как настроить DHCP для получения адресов с основного маршутиризатора?</h3>
+                        <button class="toggle-btn">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="solution">
+                        <p><strong>нужные команды:</strong></p>
+                        <p>настройка DHCP для получения адресов с основного маршутиризатора:</p>
+                        <div class="solution-code">
+                           en<br>
+conf t<br>
+ip pool hq 192.168.1.67-192.168.1.78<br>
+dhcp-server 1<br>
+  static ip 192.168.1.66<br>
+    client-id mac XX:XX:XX:XX:XX:XX (MAC адрес HQ-Cli)<br>
+    mask 255.255.255.240<br>
+    gateway 192.168.1.65<br>
+    dns 192.168.1.2<br>
+    domain_search au-team.irpo<br>
+    ex<br>
+  pool hq 1<br>
+  mask 255.255.255.240<br>
+  gateway 192.168.165<br>
+  dns 192.168.1.2<br>
+  domain_search au-team.irpo<br>
+do wr<br>
+int lan<br>
+int 200<br>
+  dhcp-server 1<br>
+  do wr<br>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Eltex Exam Solutions</h3>
+                    <p>Комплексные решения для подготовки к экзаменам по оборудованию Eltex. Техническая документация, примеры настройки и решения экзаменационных вопросов.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Разделы сайта</h3>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#equipment">Аппаратура</a></li>
+                        <li><a href="#documentation">Документация</a></li>
+                        <li><a href="#exam">Решение экзамена</a></li>
+                        <li><a href="#resources">Ресурсы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Популярное оборудование</h3>
+                    <ul>
+                        <li><a href="#">ESR-1000</a></li>
+                        <li><a href="#">ESR-2000</a></li>
+                        <li><a href="#">LTP-8X</a></li>
+                        <li><a href="#">SMG-1016</a></li>
+                        <li><a href="#">WEP-2ac</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@eltex-exam.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (495) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Москва, ул. Техническая, д. 15</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Eltex Exam Solutions. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle solution visibility
+        document.querySelectorAll('.toggle-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const solution = button.closest('.question').querySelector('.solution');
+                const icon = button.querySelector('i');
+                
+                solution.classList.toggle('show');
+                
+                if (solution.classList.contains('show')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Highlight active section in documentation menu
+        document.querySelectorAll('.docs-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.docs-menu a').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
